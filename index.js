@@ -22,7 +22,7 @@ app.get("/api/flavors", async (req, res) => {
   }
 });
 
-// GET a single flavor by ID
+// GET
 app.get("/api/flavors/:id", async (req, res) => {
   try {
     const { id } = req.params;

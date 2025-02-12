@@ -22,7 +22,7 @@ app.get("/api/flavors", async (req, res) => {
   }
 });
 
-// GET
+// GET single
 app.get("/api/flavors/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -42,7 +42,10 @@ app.post("/api/flavors", async (req, res) => {
   try {
     console.log(req.body);
     const SQL = `INSERT INTO flavors (name, is_favorite) VALUES ($1, $2) RETURNING *`;
-    const { rows } = await client.quesr(SQL, [req.body.ranking, req.body.text]);
+    const { rows } = await client.quesr(SQL, [
+      req.body.name,
+      req.body.is_favorite,
+    ]);
     res.send(rows);
     res.send("posted");
   } catch (err) {
